@@ -12,13 +12,13 @@ using Newtonsoft.Json.Linq;
 
 namespace json_parse
 {
-    public static class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            RestSharpImplement.RunWithAPI();
-            RestSharpImplement.RunWithRestSharpGetAll();
-            RestSharpImplement.RunWithRestSharpGetDetail();
+            //RestSharpImplement.RunWithAPI();
+            //RestSharpImplement.RunWithRestSharpGetAll();
+            //RestSharpImplement.RunWithRestSharpGetDetail();
             RestSharpImplement.RunWithRestSharpPostProduct();
             //RunWithDynamicParse(InputData());
             //RunWithDeserializeObject(InputData());

@@ -15,7 +15,7 @@ namespace json_parse.ConnectAPIwithRestSharp
     /// </summary>
     public static class RestSharpImplement
     {
-        public static string url = "https://localhost:44370";
+        static readonly string url = "https://localhost:44370";
         public static void RunWithAPI()
         {
             Console.WriteLine("------------RunWithAPI------------");
@@ -47,7 +47,10 @@ namespace json_parse.ConnectAPIwithRestSharp
             var request = new RestRequest("api/Sample/GetAllProducts", Method.GET);
 
             var response = client.Execute(request);
-            Console.WriteLine(response.Content);   
+            Console.WriteLine(response.Content);
+
+            var fullUrl = client.BuildUri(request);
+            Console.WriteLine(fullUrl);
         }
 
         public static void RunWithRestSharpGetDetail()
@@ -61,6 +64,8 @@ namespace json_parse.ConnectAPIwithRestSharp
             var response = client.Execute(request);
             Console.WriteLine(response.Content);
 
+            var fullUrl = client.BuildUri(request);
+            Console.WriteLine(fullUrl);
         }
 
         public static void RunWithRestSharpPostProduct()
@@ -86,6 +91,9 @@ namespace json_parse.ConnectAPIwithRestSharp
 
             var response = client.Execute(request);
             Console.WriteLine(response.Content);
+
+            var fullUrl = client.BuildUri(request);
+            Console.WriteLine(fullUrl);
         }
 
         public class Products
