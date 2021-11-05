@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
-using json_parse.ViewModels;
+using json_parse.ConnectAPIwithRestSharp;
 
 // NuGet
 // Install-Package Newtonsoft.Json -Version 13.0.1
@@ -16,62 +16,12 @@ namespace json_parse
     {
         public static void Main(string[] args)
         {
-            string json = @"
-                            {
-                                'ID':'28',
-                                'Gender':'Male',
-                                'Name':
-                                [
-                                    {
-                                        'FirstName':'Da-Ming',
-                                        'LastName':'Wang',
-                                        'FullName':'Da-Ming Wang'
-                                    }
-                                ],
-                                'Address':
-                                [
-                                    {
-                                        'Country':'Taiwan',
-                                        'City':'Taoyuan'
-                                    },
-                                    {
-                                        'Country':'Taiwan',
-                                        'City':'Kaohsiung'
-                                    }
-                                ]
-                            }
-                            ";
-
-            //RunWithAPI();
-            RunWithDynamicParse(json);
-            RunWithDeserializeObject(json);
-        }
-
-        /// <summary>
-        /// API Sample: https://docs.microsoft.com/zh-tw/aspnet/core/tutorials/first-web-api?view=aspnetcore-5.0&tabs=visual-studio
-        /// </summary>
-        private static void RunWithAPI()
-        {
-            Console.WriteLine("------------RunWithAPI------------");
-            string url = "https://localhost:44335/weatherforecast";
-
-            using (WebClient wc = new WebClient())
-            {
-                var response = wc.DownloadString(new Uri(url));
-                var myobjs = JsonConvert.DeserializeObject<List<WeatherForecastViewModel>>(response);
-
-                Write(myobjs);
-
-                //foreach (var obj in myobjs)
-                //{
-                //    Console.WriteLine(
-                //        $"key:{obj.Date}\t" +
-                //        $"value:{obj.TemperatureC}\t" +
-                //        $"value:{obj.TemperatureF}\t" +
-                //        $"value:{obj.Summary}");
-                //}
-                //Console.ReadKey();
-            }
+            RestSharpImplement.RunWithAPI();
+            RestSharpImplement.RunWithRestSharpGetAll();
+            RestSharpImplement.RunWithRestSharpGetDetail();
+            RestSharpImplement.RunWithRestSharpPostProduct();
+            //RunWithDynamicParse(InputData());
+            //RunWithDeserializeObject(InputData());
         }
 
         private static void RunWithDynamicParse(string json)
@@ -125,17 +75,33 @@ namespace json_parse
             }
         }
 
-        private static void Write(this List<WeatherForecastViewModel> rootObject)
+        private static string InputData()
         {
-            foreach (var obj in rootObject)
-            {
-                Console.WriteLine("date: " + obj.Date);
-                Console.WriteLine("temperatureC: " + obj.TemperatureC);
-                Console.WriteLine("temperatureF: " + obj.TemperatureF);
-                Console.WriteLine("summary: " + obj.Summary);
-            }
-            Console.ReadKey();
+            return @"
+                    {
+                        'ID':'28',
+                        'Gender':'Male',
+                        'Name':
+                        [
+                            {
+                                'FirstName':'Da-Ming',
+                                'LastName':'Wang',
+                                'FullName':'Da-Ming Wang'
+                            }
+                        ],
+                        'Address':
+                        [
+                            {
+                                'Country':'Taiwan',
+                                'City':'Taoyuan'
+                            },
+                            {
+                                'Country':'Taiwan',
+                                'City':'Kaohsiung'
+                            }
+                        ]
+                    }
+                    ";
         }
-
     }
 }
