@@ -17,11 +17,14 @@ namespace json_parse
         static void Main(string[] args)
         {
             //RestSharpImplement.RunWithAPI();
+            
             //RestSharpImplement.RunWithRestSharpGetAll();
             //RestSharpImplement.RunWithRestSharpGetDetail();
-            RestSharpImplement.RunWithRestSharpPostProduct();
-            //RunWithDynamicParse(InputData());
-            //RunWithDeserializeObject(InputData());
+            //RestSharpImplement.RunWithRestSharpPostProduct();
+            
+            
+            RunWithDynamicParse(InputData());
+            RunWithDeserializeObject(InputData());
         }
 
         private static void RunWithDynamicParse(string json)
